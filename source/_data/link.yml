@@ -1,0 +1,10 @@
+ 
+class:
+  class_name: headline
+  link_list:
+    1:
+      name: everett
+      link: https://everetthuang.github.io
+      avatar: https://everetthuang.github.io/Depository/Img/WebSite/02.png
+      descr: Freedom Justice Equity
+
