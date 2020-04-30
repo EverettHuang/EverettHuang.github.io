@@ -3,7 +3,7 @@
 
 # Global Property
 title-text: "Everett-Debian"
-desktop-image: "Wall123.png"
+desktop-image: "028.png"
 desktop-color: "#000000"
 terminal-font: "Terminus Regular 14"
 terminal-box: "terminal_box_*.png"

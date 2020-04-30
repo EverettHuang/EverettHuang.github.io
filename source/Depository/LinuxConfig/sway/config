@@ -37,8 +37,8 @@ set $menu dmenu_run
 #
 #  设置自动锁屏及息屏时间
 exec swayidle -w \
-         timeout 300 'swaylock -f -i /home/everett/Pictures/029.jpg' \
-         timeout 600 'swaymsg "output * dpms off"' \
+         timeout 3000000 'swaylock -f -i /home/everett/Pictures/029.jpg' \
+         timeout 6000000 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -i /home/everett/Pictures/029.jpg' \
 #
