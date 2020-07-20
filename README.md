@@ -1,2 +1,2 @@
 # hexo
-hexo environment backup
+hexo environment backup.
