@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>监督学习算法：线性模型 | Everett</title><meta name="description" content="本文介绍监督学习算法中的线性模型，线性模型广泛运用于实践中"><meta name="keywords"><meta name="author" content="Everett"><meta name="copyright" content="Everett"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/Depository/Img/WebSite/01.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://EverettHuang.github.io/Depository/Other/DiscardPost/016"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="监督学习算法：线性模型"><meta name="twitter:description" content="本文介绍监督学习算法中的线性模型，线性模型广泛运用于实践中"><meta name="twitter:image" content="https://EverettHuang.github.io/Depository/Img/WebSite/02.png"><meta property="og:type" content="website"><meta property="og:title" content="监督学习算法：线性模型"><meta property="og:url" content="https://EverettHuang.github.io/Depository/Other/DiscardPost/016"><meta property="og:site_name" content="Everett"><meta property="og:description" content="本文介绍监督学习算法中的线性模型，线性模型广泛运用于实践中"><meta property="og:image" content="https://EverettHuang.github.io/Depository/Img/WebSite/02.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preload" href="/Depository/Img/Post/0013.jpg" as="image"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Bookmark',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  copyright: undefined,
+  copy_copyright_js: false
+  
+}</script></head><body><div id="header"> <div id="page-header"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Everett</a></span><i class="fa fa-bars fa-fw toggle-menu pull-right close" aria-hidden="true"></i><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right" id="search_button"></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lozad avatar_img" src="/Depository/Img/WebSite/02.png" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is_center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is_center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">3</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></div></div><div id="body-wrap"><div id="web_bg"></div><nav class="not_index_bg" id="nav"><div class="nav_bg" style="background-image: url(/Depository/Img/Post/0013.jpg)"></div><div id="page_site-info"><div id="site-title"><span class="blogtitle">监督学习算法：线性模型</span></div></div></nav><div id="content-outer"><div class="layout_page" id="content-inner"><article id="page"><h1>监督学习算法：线性模型</h1><div class="article-container"><p><strong><center>线性模型</center></strong></p>
+<p>线性模型是在实践中广泛使用的一类模型</p>
+<p>线性模型利用输入特征函数的<strong>线性函数</strong>(linear function)进行预测</p>
+<p><strong>正则化</strong>：对模型做显式约束，以避免过拟合</p>
+<ul>
+<li>L1正则化：L1正则化是指权值向量w中各个元素的绝对值之和，可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择</li>
+<li>L2正则化：L2正则化是指权值向量w中各个元素的平方和再求平方根，可以防止模型过拟合，一定程度上L1也可以防止模型过拟合</li>
+</ul>
+<p><strong>线性模型方法</strong></p>
+<ul>
+<li>fit方法：调用该方法训练模型(该方法参数为训练集)</li>
+<li>predict方法：调用该方法预测标签(该方法参数为待预测标签的数据)</li>
+<li>score方法：调用该方法评估模型R^2(返回R^2，参数为训练集时表示训练精度,参数为测试集时表示泛化精度)</li>
+</ul>
+<p><strong>线性模型属性</strong></p>
+<ul>
+<li>coef_属性：属性coef_保存“斜率”参数(w,也叫权重或系数)</li>
+<li>intercept_属性：属性intercept_保存偏移或截距(b)</li>
+</ul>
+<p><em>属性coef_为一个NumPy数组(每个元素对应一个输入特征)，属性intercept_为一个浮点数</em></p>
+<p><em>属性后的下划线是因为scikit-learn为了与用户设置的参数区分开，总是将从训练数据中得出的值保存在以下划线结尾的属性中</em></p>
+<p><strong>线性模型主要参数</strong></p>
+<ul>
+<li>aplha(c)：在线性模型中最重要的参数为正则化参数，在回归模型中叫作alpha，在LinearSVC和LogisticRegression中叫做c；alpha值较大或c值较小，说明模型比较简单；假设只有几个特征是真正重要的，应该用L1正则化，否则默认使用L2正则化</li>
+</ul>
+<hr>
+<h4 id="用于回归的线性模型"><a href="#用于回归的线性模型" class="headerlink" title="用于回归的线性模型"></a>用于回归的线性模型</h4><p>对于回归问题，线性模型预测的一般公式如下：</p>
+<p><img src="URL" alt="线性模型预测的一般公式" title="线性模型预测的一般公式"></p>
+<p><img src="URL" alt="单一特征线性模型预测的一般公式" title="单一特征线性模型预测的一般公式"></p>
+<ul>
+<li>x[0]到x[p]表示单个数据点的特征，w和b是学习模型的参数，y^是模型的预测结果</li>
+</ul>
+<hr>
+<h5 id="线性回归-普通最小二乘法"><a href="#线性回归-普通最小二乘法" class="headerlink" title="线性回归(普通最小二乘法)"></a>线性回归(普通最小二乘法)</h5><p>线性回归(普通最小二乘法,OLS)是回归问题最简单最经典的线性方法。</p>
+<p>线性回归寻找参数w和b，使得对训练集的预测值与真实的回归目标值y之间的均方误差最小</p>
+<p><em>均方误差(mean squared erroe)：是预测值与真实值之差的平方和除以样本数</em></p>
+<p><strong>LinearRegression</strong></p>
+<p><code>form sklearn.linear_model import LinearRegression</code></p>
+<p><strong>参数</strong></p>
+<p><em>线性回归没有参数，这是一个优点，但也因此无法控制模型的复杂度</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">form sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line">lr = LinearRegression().fit(X_train, y_train)</span><br><span class="line">lr.coef_</span><br><span class="line">lr.intercept_</span><br><span class="line">lr.score(X_train, y_train)</span><br><span class="line">lr.score(X_test, y_test)</span><br></pre></td></tr></table></figure>
+
+<p>线性模型对低维数据过拟合风险小，因为模型简单；但对高维数据(更多特征)线性模型非常强大，但是过拟合风险也大</p>
+<hr>
+<h5 id="岭回归-Ridge"><a href="#岭回归-Ridge" class="headerlink" title="岭回归(Ridge)"></a>岭回归(Ridge)</h5><p>岭回归也是一种用于回归的现行模型，因此它的预测公式与普通最小二乘法相同。岭回归用到L2正则化</p>
+<p><em>岭回归中，对系数(w)的选择不仅要在训练集上得到好的预测结果，而且还要拟合附加约束。系数尽量小，w的所有元素都应该接近于0，意味着每个特征对输出的影响尽可能小，同时仍给出很好的预测结果</em></p>
+<p><strong>Ridge</strong></p>
+<p><code>from sklearn.linear_model import Ridge</code></p>
+<p><strong>参数</strong></p>
+<ul>
+<li>alpha参数：默认参数alpha=1.0。增大alpha会使得系数更加趋近于0，从而降低训练集性能，但可能会提高泛化性能</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line">ridge = Ridge().fit(X_train, y_train)</span><br><span class="line">ridge.score(X_train, y_train)</span><br><span class="line">ridge.score(X_test, y_test)</span><br></pre></td></tr></table></figure>
+
+<p><em>岭回归是一种约束性更强的模型，所以更不容易出现过拟合(训练数据足够多时，正则化变得不那么重要，性能都在增加，但线性回归性能将会追上岭回归)，应该选择Ridge而不是LinearRegression</em></p>
+<hr>
+<h5 id="lasso"><a href="#lasso" class="headerlink" title="lasso"></a>lasso</h5><p>与岭回归相同，使用lasso也是约束系数使其接近于0，但是用的是L1正则化，使某些系数刚好为0(特征完全被模型忽略)</p>
+<p><em>使某些系数刚好为0(特征完全被模型忽略)，这样模型更容易解释，也可以呈现模型最重要的特征</em></p>
+<p><strong>Lasso</strong></p>
+<p><code>from sklearn.linear_model import Lasso</code></p>
+<p><strong>参数</strong></p>
+<ul>
+<li>alpha参数：默认参数alpha=1.0。增大alpha会使得系数更加趋近于0，从而降低训练集性能，但可能会提高泛化性能</li>
+<li>max_iter参数：运行迭代的最大次数。增加max_iter的值会增加模型复杂度，在欠拟合情况下增加</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Lasso</span><br><span class="line">lasso = Lasso().fit(X_train, y_train)</span><br><span class="line">lasso = Lasso(alpha = <span class="number">0.01</span>, max_iter = <span class="number">100000</span>)</span><br><span class="line">ridge.score(X_train, y_train)</span><br><span class="line">ridge.score(X_test, y_test)</span><br></pre></td></tr></table></figure>
+
+<p><em>在实践中，岭回归和Lasso首选岭回归。但如果特征很多，你认为只有其中几个是重要的，那么选择Lasso可能更好，且Lasso更容易解释。</em></p>
+<p><em>scikit-learn中还提供了ElasticNet类，结合了Lasso和Ridge的惩罚项。在实践中这种结合最好，不过需要调节两个参数(一个用于L1正则化，一个用于L2正则化)</em></p>
+<hr>
+<h5 id="ElasticNet"><a href="#ElasticNet" class="headerlink" title="ElasticNet"></a>ElasticNet</h5><p><code>sklearn.linear_model.ElasticNetCV</code>：可以通过迭代选择最佳的L1和L2(也可指定一组值)<br><code>sklearn.linear_model.ElasticNet</code>：指定L1和L2</p>
+<hr>
+<h4 id="用于分类的线性模型"><a href="#用于分类的线性模型" class="headerlink" title="用于分类的线性模型"></a>用于分类的线性模型</h4><p>许多的线性分类模型只适用于二分类问题，不能轻易推广到多类别问题(除了Logistic回归)</p>
+<p>二分类线性模型公式</p>
+<p>如果函数值小于0，就预测类别-1；如果函数大于0，就预测类别1；决策边界是输入的线性函数</p>
+<p>将二分类推广到多分类算法的一种常见方法是“一对其余”方法：每个类别都学习一个二分类模型(有多少个类别就有多少个二分类模型)</p>
+<p>置信方程</p>
+<p><em>置信方程结果中最大值对应的类别即为预测的类别标签</em></p>
+<p><em>多分类Logistic回归背后的数学与“一对其余”方法稍显不同，但它也是对每个类别都有一个系数向量和一个截距，也使用了相同的预测方法</em></p>
+<p>最常见的两种线性分类算法是<strong>Logistic回归</strong>(logistic regression)和<strong>线性支持向量机</strong>(线性SVM)</p>
+<p><strong>Logistic回归</strong></p>
+<p><code>from sklearn.linear_model import LogisticRegression</code></p>
+<p><strong>线性支持向量机</strong></p>
+<p><code>from sklearn.svm import LinearSVC</code></p>
+<p>两种模型都默认使用L2正则化</p>
+<p><strong>参数</strong></p>
+<ul>
+<li>c参数：c = 1.0(c越大，对应的正则化越弱；较小的c可以让算法尽量适应“大多数”数据点，较大的c更强调每个数据点都分类的重要性)</li>
+<li>penalty参数：penalty = “l1”(可用penalty参数指定正则化方式)</li>
+</ul>
+<hr>
+<h4 id="线性模型优缺点"><a href="#线性模型优缺点" class="headerlink" title="线性模型优缺点"></a>线性模型优缺点</h4><ul>
+<li><p>优点：线性模型的训练速度和预测速度都很快，这种模型可以推广到非常大的数据集，稀疏数据有很有效；在包含十万甚至上百万个样本时，需要研究LogisticRegression和Ridge模型的solver = ‘sag’选项，在处理大型数据时，这一选项比默认值更快；理解如何进行预测是相对容易的。</p>
+</li>
+<li><p>缺点：如果特征数量大于样本数量，线性模型的表现通常都很好，也常用于非常大的数据集，但在低维空间中，其他模型的泛化性能可能更好。</p>
+</li>
+</ul>
+<hr>
+</div><nav id="pagination"><div class="pagination"></div></nav></article><div class="aside_content" id="aside_content"><div class="card_widget card-author"><div class="card-content"><div class="post_data"><div class="data-item is_center"><img class="lozad avatar_img" src="/Depository/Img/WebSite/02.png" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"><p class="author-info__name is_center">Everett</p><p class="author-info__description is_center"></p></div></div><div class="post_data data_config"><div class="data-item is_center"><div class="data_link"><a href="/archives/"><p class="headline">Articles</p><p class="length_num">18</p></a></div></div><div class="data-item is_center">      <div class="data_link"><a href="/tags/"><p class="headline">Tags</p><p class="length_num">7</p></a></div></div><div class="data-item is_center">     <div class="data_link"><a href="/categories/"><p class="headline">Categories</p><p class="length_num">3</p></a></div></div></div><div class="post_data is_center"><a class="data-item bookmark bookmarke--primary bookmark--animated" id="bookmark-it" href="javascript:;" title="Add to bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i><span>Add to bookmark</span></a></div><div class="post_data data_config"><div id="aside-social-icons"> <a class="social-icon data-item" href="https://www.facebook.com/freeeverett" target="_blank"><i class="fa fa-facebook"></i></a><a class="social-icon data-item" href="https://twitter.com/EverettFree" target="_blank"><i class="fa fa-twitter"></i></a><a class="social-icon data-item" href="https://freeeverettmail@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a><a class="social-icon data-item" href="https://m.me/freeeverett" target="_blank"><i class="fa fa-comment"></i></a><a class="social-icon data-item" href="https://t.me/everetth" target="_blank"><i class="fa fa-telegram"></i></a><a class="social-icon data-item" href="https://github.com/everetthuang" target="_blank"><i class="fa fa-github"></i></a></div></div></div></div><div class="card_widget card-announcement"><div class="card-content"><div class="item_headline"><i class="fa fa-bullhorn card-announcement-animation" aria-hidden="true"></i><span>Announcement</span></div><div class="announcement_content">Thank you for visiting this site, if you like, please collect ^_^</div></div></div><div class="card_widget card-recent-post"><div class="card-content"><div class="item_headline"><i class="fa fa-history" aria-hidden="true"></i><span>Recent Post</span></div><div class="aside_recent_item"><div class="aside_recent_post"><a href="/2019/10/16/007/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Linux软件管理"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/16/007/" title="Linux软件管理">Linux软件管理</div><time class="aside_post_meta post-meta__date">2019-10-16</time></div></a></div><div class="aside_recent_post"><a href="/2019/10/15/005/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Linux存储结构与磁盘管理"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/15/005/" title="Linux存储结构与磁盘管理">Linux存储结构与磁盘管理</div><time class="aside_post_meta post-meta__date">2019-10-15</time></div></a></div><div class="aside_recent_post"><a href="/2019/10/14/004/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Linux账户与系统安全"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/14/004/" title="Linux账户与系统安全">Linux账户与系统安全</div><time class="aside_post_meta post-meta__date">2019-10-14</time></div></a></div><div class="aside_recent_post"><a href="/2019/10/13/008/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Linux基础网络服务"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/13/008/" title="Linux基础网络服务">Linux基础网络服务</div><time class="aside_post_meta post-meta__date">2019-10-13</time></div></a></div><div class="aside_recent_post"><a href="/2019/10/13/006/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Shell脚本"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/13/006/" title="Shell脚本">Shell脚本</div><time class="aside_post_meta post-meta__date">2019-10-13</time></div></a></div></div></div></div><div class="card_widget card-tags"><div class="card-content"><div class="item_headline"><i class="fa fa-tags" aria-hidden="true"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Linux/" style="font-size: 24px; color: #000">Linux</a> <a href="/tags/debian/" style="font-size: 16px; color: #999">debian</a> <a href="/tags/github/" style="font-size: 16px; color: #999">github</a> <a href="/tags/github-blog/" style="font-size: 16px; color: #999">github blog</a> <a href="/tags/markdwon/" style="font-size: 16px; color: #999">markdwon</a> <a href="/tags/python/" style="font-size: 20px; color: #4d4d4d">python</a> <a href="/tags/trojan/" style="font-size: 16px; color: #999">trojan</a></div></div></div><div class="card_widget card-webinfo"><div class="card-content"><div class="item_headline"><i class="fa fa-line-chart" aria-hidden="true"></i><span>Info</span></div><div class="webinfo"><div class="webinfo_item"><div class="webinfo_article_name">Article :</div><div class="webinfo_article_count">18</div></div><div class="webinfo_item"><div class="webinfo_runtime_name">Run time :</div><div class="webinfo_runtime_count" id="webinfo_runtime_count"></div><script id="runtionshow" src="/js/runtimeshow.js" start_date="9/6/2019 00:00:00">      </script></div><div class="webinfo_item">      <div class="webinfo_site_uv_name">UV :</div><div class="webinfo_site_uv_count" id="busuanzi_value_site_uv"></div></div><div class="webinfo_item"><div class="webinfo_site_name">PV :</div><div class="webinfo_site_pv_count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></div></div><footer style="background-image: url(/Depository/Img/Post/0013.jpg)"><div id="footer"><div class="copyright">&copy;2019 - 2020 By Everett</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">Welcome to My <a href="https://everetthuang.github.io/">Personal Home Page</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><i class="nightshift fa fa-moon-o" id="nightshift" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/nightshift.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script></body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>鸢尾花分类 | Everett</title><meta name="description" content="本文利用已知的鸢尾花的测量数据，所以为一个监督学习问题，预测花属于三种品种中的某一种，为三分类问题"><meta name="keywords"><meta name="author" content="Everett"><meta name="copyright" content="Everett"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/Depository/Img/WebSite/01.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://EverettHuang.github.io/Depository/Other/DiscardPost/013"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="鸢尾花分类"><meta name="twitter:description" content="本文利用已知的鸢尾花的测量数据，所以为一个监督学习问题，预测花属于三种品种中的某一种，为三分类问题"><meta name="twitter:image" content="https://EverettHuang.github.io/Depository/Img/WebSite/02.png"><meta property="og:type" content="website"><meta property="og:title" content="鸢尾花分类"><meta property="og:url" content="https://EverettHuang.github.io/Depository/Other/DiscardPost/013"><meta property="og:site_name" content="Everett"><meta property="og:description" content="本文利用已知的鸢尾花的测量数据，所以为一个监督学习问题，预测花属于三种品种中的某一种，为三分类问题"><meta property="og:image" content="https://EverettHuang.github.io/Depository/Img/WebSite/02.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preload" href="/Depository/Img/Post/0013.jpg" as="image"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Bookmark',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  copyright: undefined,
+  copy_copyright_js: false
+  
+}</script></head><body><div id="header"> <div id="page-header"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Everett</a></span><i class="fa fa-bars fa-fw toggle-menu pull-right close" aria-hidden="true"></i><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right" id="search_button"></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lozad avatar_img" src="/Depository/Img/WebSite/02.png" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is_center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is_center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">3</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></div></div><div id="body-wrap"><div id="web_bg"></div><nav class="not_index_bg" id="nav"><div class="nav_bg" style="background-image: url(/Depository/Img/Post/0013.jpg)"></div><div id="page_site-info"><div id="site-title"><span class="blogtitle">鸢尾花分类</span></div></div></nav><div id="content-outer"><div class="layout_page" id="content-inner"><article id="page"><h1>鸢尾花分类</h1><div class="article-container"><p><strong><center>机器学习之：鸢尾花分类</center></strong></p>
+<p>本文利用已知的鸢尾花的测量数据，所以为一个监督学习问题，预测花属于三种品种中的某一种，为三分类问题</p>
+<p>本文用到的鸢尾花(Iris)数据集为机器学习中的经典数据集，该数据集包含在scikit-learn的datasets模块中</p>
+<h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3><p>首先导入默认库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plot</span><br></pre></td></tr></table></figure>
+
+<p>因为鸢尾花数据包含在scikit-learn的datasets模块中,通过调用load_iris函数来加载数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">iris_dataset = load_iris()</span><br></pre></td></tr></table></figure>
+
+<p>load-rirs返回的iris对象是一个Bunch对象，类似于字典，里面包含键和值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Keys of iris_dataset: \n&#123;&#125;"</span>.format(iris_dataset.keys()))</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Keys of iris_dataset:</span><br><span class="line">dict_keys([<span class="string">'data'</span>, <span class="string">'target'</span>, <span class="string">'target_names'</span>, <span class="string">'DESCR'</span>, <span class="string">'feature_names'</span>, <span class="string">'filename'</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&#39;DESCR&#39;</code>键的值是数据集的简要说明</li>
+<li><code>&#39;terget_names&#39;</code>键对应的值是一个字符串数组，包含我们要预测的花的品种</li>
+<li><code>&#39;feature_names&#39;</code>键对应的值是一个字符串列表，对每一个特征进行说明</li>
+<li><code>&#39;data&#39;</code>里面是花萼的长度宽度和花瓣的长度宽度(cm),是一个NumPy数组</li>
+<li><code>&#39;terget&#39;</code>包含的是测量过的每朵花的品种，是一个NumPy数组</li>
+</ul>
+<p><em>由<code>iris[&#39;target_names&#39;]</code>中得知,<code>&#39;target&#39;</code>中的0代表setosa，1代表versicolor，2代表virginica</em></p>
+<h3 id="拆分数据"><a href="#拆分数据" class="headerlink" title="拆分数据"></a>拆分数据</h3><p>scikit-learn中的train_test_splie函数可以对数据进行打乱拆分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(</span><br><span class="line">    iris_dataset[<span class="string">'data'</span>], iris_dataset[<span class="string">'target'</span>], random_state = <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个函数将75%的数据及标志作为训练集，25%的数据及标志作为测试集</li>
+<li>scikit-learn中常用X表示数据，y表示标签(f(x)=y)，数据为二维数组所以用大写X，标签为一维数组用小写y</li>
+<li>在拆分数据集前，train_test_split会将数据集伪随机打乱再进行拆分，用random_state参数指定随机数生成器的种子保证打乱后的次序一致，方便得到一致的结果</li>
+<li>train_test_split函数的输出为X_train,X_test,y_train,y_test,均为NumPy数组</li>
+</ul>
+<h3 id="观察数据"><a href="#观察数据" class="headerlink" title="观察数据"></a>观察数据</h3><p>此处可绘制散点图对数据进行观察，选用pandas中的scatter_matrix函数绘制，具体方法不再赘述</p>
+<ul>
+<li>用pandas绘制图像首先要先将数据转换成pandas DataFrame</li>
+</ul>
+<h3 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h3><p>此处我们选用k邻近算法：构建此模型只需要保存训练集即可</p>
+<ul>
+<li>k邻近算法中的k表示的是邻居的个数</li>
+<li>k邻近算法是在neighbors模块中的KNeighborsClassifier类中实现</li>
+<li>k邻近算法最重要的参数为n_neighbors表示邻居的数目，我们这里设置为1</li>
+</ul>
+<p>首先对KNeighborsClassifier类实例化为一个对象，设置n_neighbors参数为1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">knn = KNeighborsClassifier(n_neighbors=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>基于训练集来构建模型，调用knn对象的fit方法，输入参数为X_train和y_train，二者皆为NumPy数据，前者包含训练数据，后者包含相应的训练标签</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knn.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">KNeighborsClassifier(algorithm=<span class="string">'auto'</span>, leaf_size=<span class="number">30</span>, metric=<span class="string">'minkowski'</span>,</span><br><span class="line">                     metric_params=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, n_neighbors=<span class="number">1</span>, p=<span class="number">2</span>,</span><br><span class="line">                     weights=<span class="string">'uniform'</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>其中n_neighbors参数为手动输入的1,其他参数均为默认</li>
+</ul>
+<p>此时模型已经构建完毕</p>
+<h3 id="作出预测"><a href="#作出预测" class="headerlink" title="作出预测"></a>作出预测</h3><p>假设现在有一朵鸢尾花，花萼长5cm，宽2.9cm，花瓣长1cm，宽0.2cm，预测该花为哪种鸢尾花</p>
+<ol>
+<li>首先将该花数据放入一个NumPy数组中，</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_new = np.array([[<span class="number">5</span>, <span class="number">2.9</span>, <span class="number">1</span>, <span class="number">0.2</span>]])</span><br></pre></td></tr></table></figure>
+
+<p><em>此处将花的数据转换为一个二维NumPy数组的一行，因为scikit-learn的输入数据必须为二位数组</em></p>
+<ol start="2">
+<li>调用knn对象的predict方法来进行预测</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction = knn.predict(X_new)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>展示预测结果</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Predicted target name: &#123;&#125;"</span>.format(</span><br><span class="line">    iris_dataset[<span class="string">'target_names'</span>][prediction]))</span><br></pre></td></tr></table></figure>
+
+<p>输出：Predicted target name: [‘setosa’]</p>
+<h3 id="评估模型"><a href="#评估模型" class="headerlink" title="评估模型"></a>评估模型</h3><p><strong>通过模型在测试集上的计算精度来评估模型的优劣</strong></p>
+<ul>
+<li>方法一</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y_pred = knn.predict(X_test)</span><br><span class="line">print(<span class="string">"Test set score: &#123;:.2f&#125;"</span>.format(np.mean(y_pred == y_test)))</span><br></pre></td></tr></table></figure>
+
+<p><em>输出：Test set score: 0.97</em></p>
+<ul>
+<li>方法二 </li>
+</ul>
+<p><em>直接调用knn的score方法进行评估</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Test set score: &#123;:.2f&#125;"</span>.format(knn.score(X_test, y_test)))</span><br></pre></td></tr></table></figure>
+
+<p><em>输出：Test set score: 0.97</em></p>
+<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>此模型应用核心代码如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">X_train, X_test, y_train, y_test = train_test_split(</span><br><span class="line">    iris_dataset[<span class="string">'data'</span>], iris_dataset[<span class="string">'target'</span>], random_state = <span class="number">0</span>)</span><br><span class="line">knn = KNeighborsClassifier(n_neighbors = <span class="number">1</span>)</span><br><span class="line">knn.fit(X_train, y_train)</span><br><span class="line">knn.score(X_test, y_test)</span><br></pre></td></tr></table></figure>
+
+<h3 id="附："><a href="#附：" class="headerlink" title="附："></a>附：</h3><p><strong>scikit-learn</strong></p>
+<ul>
+<li>详细文档:<a href="http://scikit-learn.org/stable/documentation" target="_blank" rel="noopener">http://scikit-learn.org/stable/documentation</a></li>
+<li>用户指南:<a href="http://scikit-learn.org/stable/user_guide.html" target="_blank" rel="noopener">http://scikit-learn.org/stable/user_guide.html</a></li>
+</ul>
+<p><strong>机器学习常用python库</strong></p>
+<ul>
+<li>Jupyter Notebook </li>
+<li>NumPy</li>
+<li>pandas</li>
+<li>matplotlib</li>
+<li>SciPy</li>
+</ul>
+<p><strong>一般模型默认导入库</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+<p><strong>默认加入下列命令，否则需要调用<code>plt.show</code>来展示图像</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib notebook</span><br></pre></td></tr></table></figure>
+
+</div><nav id="pagination"><div class="pagination"></div></nav></article><div class="aside_content" id="aside_content"><div class="card_widget card-author"><div class="card-content"><div class="post_data"><div class="data-item is_center"><img class="lozad avatar_img" src="/Depository/Img/WebSite/02.png" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"><p class="author-info__name is_center">Everett</p><p class="author-info__description is_center"></p></div></div><div class="post_data data_config"><div class="data-item is_center"><div class="data_link"><a href="/archives/"><p class="headline">Articles</p><p class="length_num">18</p></a></div></div><div class="data-item is_center">      <div class="data_link"><a href="/tags/"><p class="headline">Tags</p><p class="length_num">7</p></a></div></div><div class="data-item is_center">     <div class="data_link"><a href="/categories/"><p class="headline">Categories</p><p class="length_num">3</p></a></div></div></div><div class="post_data is_center"><a class="data-item bookmark bookmarke--primary bookmark--animated" id="bookmark-it" href="javascript:;" title="Add to bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i><span>Add to bookmark</span></a></div><div class="post_data data_config"><div id="aside-social-icons"> <a class="social-icon data-item" href="https://www.facebook.com/freeeverett" target="_blank"><i class="fa fa-facebook"></i></a><a class="social-icon data-item" href="https://twitter.com/EverettFree" target="_blank"><i class="fa fa-twitter"></i></a><a class="social-icon data-item" href="https://freeeverettmail@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a><a class="social-icon data-item" href="https://m.me/freeeverett" target="_blank"><i class="fa fa-comment"></i></a><a class="social-icon data-item" href="https://t.me/everetth" target="_blank"><i class="fa fa-telegram"></i></a><a class="social-icon data-item" href="https://github.com/everetthuang" target="_blank"><i class="fa fa-github"></i></a></div></div></div></div><div class="card_widget card-announcement"><div class="card-content"><div class="item_headline"><i class="fa fa-bullhorn card-announcement-animation" aria-hidden="true"></i><span>Announcement</span></div><div class="announcement_content">Thank you for visiting this site, if you like, please collect ^_^</div></div></div><div class="card_widget card-recent-post"><div class="card-content"><div class="item_headline"><i class="fa fa-history" aria-hidden="true"></i><span>Recent Post</span></div><div class="aside_recent_item"><div class="aside_recent_post"><a href="/2019/10/16/007/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Linux软件管理"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/16/007/" title="Linux软件管理">Linux软件管理</div><time class="aside_post_meta post-meta__date">2019-10-16</time></div></a></div><div class="aside_recent_post"><a href="/2019/10/15/005/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Linux存储结构与磁盘管理"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/15/005/" title="Linux存储结构与磁盘管理">Linux存储结构与磁盘管理</div><time class="aside_post_meta post-meta__date">2019-10-15</time></div></a></div><div class="aside_recent_post"><a href="/2019/10/14/004/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Linux账户与系统安全"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/14/004/" title="Linux账户与系统安全">Linux账户与系统安全</div><time class="aside_post_meta post-meta__date">2019-10-14</time></div></a></div><div class="aside_recent_post"><a href="/2019/10/13/008/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Linux基础网络服务"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/13/008/" title="Linux基础网络服务">Linux基础网络服务</div><time class="aside_post_meta post-meta__date">2019-10-13</time></div></a></div><div class="aside_recent_post"><a href="/2019/10/13/006/"><div class="aside_post_cover"><img class="aside_post_bg" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'" title="Shell脚本"></div><div id="aside_title"><div class="aside_post_title" href="/2019/10/13/006/" title="Shell脚本">Shell脚本</div><time class="aside_post_meta post-meta__date">2019-10-13</time></div></a></div></div></div></div><div class="card_widget card-tags"><div class="card-content"><div class="item_headline"><i class="fa fa-tags" aria-hidden="true"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Linux/" style="font-size: 24px; color: #000">Linux</a> <a href="/tags/debian/" style="font-size: 16px; color: #999">debian</a> <a href="/tags/github/" style="font-size: 16px; color: #999">github</a> <a href="/tags/github-blog/" style="font-size: 16px; color: #999">github blog</a> <a href="/tags/markdwon/" style="font-size: 16px; color: #999">markdwon</a> <a href="/tags/python/" style="font-size: 20px; color: #4d4d4d">python</a> <a href="/tags/trojan/" style="font-size: 16px; color: #999">trojan</a></div></div></div><div class="card_widget card-webinfo"><div class="card-content"><div class="item_headline"><i class="fa fa-line-chart" aria-hidden="true"></i><span>Info</span></div><div class="webinfo"><div class="webinfo_item"><div class="webinfo_article_name">Article :</div><div class="webinfo_article_count">18</div></div><div class="webinfo_item"><div class="webinfo_runtime_name">Run time :</div><div class="webinfo_runtime_count" id="webinfo_runtime_count"></div><script id="runtionshow" src="/js/runtimeshow.js" start_date="9/6/2019 00:00:00">      </script></div><div class="webinfo_item">      <div class="webinfo_site_uv_name">UV :</div><div class="webinfo_site_uv_count" id="busuanzi_value_site_uv"></div></div><div class="webinfo_item"><div class="webinfo_site_name">PV :</div><div class="webinfo_site_pv_count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></div></div><footer style="background-image: url(/Depository/Img/Post/0013.jpg)"><div id="footer"><div class="copyright">&copy;2019 - 2020 By Everett</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">Welcome to My <a href="https://everetthuang.github.io/">Personal Home Page</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><i class="nightshift fa fa-moon-o" id="nightshift" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/nightshift.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script></body></html>

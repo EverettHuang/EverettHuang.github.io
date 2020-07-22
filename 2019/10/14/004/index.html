@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Linux账户与系统安全 | Everett</title><meta name="description" content="Linux账户与系统安全"><meta name="keywords" content="Linux"><meta name="author" content="Everett"><meta name="copyright" content="Everett"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/Depository/Img/WebSite/01.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://EverettHuang.github.io/2019/10/14/004/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Linux账户与系统安全"><meta name="twitter:description" content="Linux账户与系统安全"><meta name="twitter:image" content="https://EverettHuang.github.io/Depository/Img/Post/"><meta property="og:type" content="article"><meta property="og:title" content="Linux账户与系统安全"><meta property="og:url" content="https://EverettHuang.github.io/2019/10/14/004/"><meta property="og:site_name" content="Everett"><meta property="og:description" content="Linux账户与系统安全"><meta property="og:image" content="https://EverettHuang.github.io/Depository/Img/Post/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="prev" title="Linux存储结构与磁盘管理" href="https://EverettHuang.github.io/2019/10/15/005/"><link rel="next" title="Linux基础网络服务" href="https://EverettHuang.github.io/2019/10/13/008/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Bookmark',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  copyright: undefined,
+  copy_copyright_js: false
+  
+}</script></head><body><div id="header"> <div id="page-header"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Everett</a></span><i class="fa fa-bars fa-fw toggle-menu pull-right close" aria-hidden="true"></i><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right" id="search_button"></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lozad avatar_img" src="/Depository/Img/WebSite/02.png" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is_center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is_center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">3</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#账户"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">账户</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#useradd-创建用户账户"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">useradd(创建用户账户)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#groupadd-创建组账户"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">groupadd(创建组账户)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#id"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">id</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#passwd-更新账户认证信息"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">passwd(更新账户认证信息)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#usermod-修改用户的属性"><span class="toc_mobile_items-number">1.5.</span> <span class="toc_mobile_items-text">usermod(修改用户的属性)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#userdel-删除用户"><span class="toc_mobile_items-number">1.6.</span> <span class="toc_mobile_items-text">userdel(删除用户)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#groupdel-删除组账户"><span class="toc_mobile_items-number">1.7.</span> <span class="toc_mobile_items-text">groupdel(删除组账户)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#账户文件"><span class="toc_mobile_items-number">1.8.</span> <span class="toc_mobile_items-text">账户文件</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#权限"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">权限</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#普通权限"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">普通权限</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#特殊权限"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">特殊权限</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#隐藏权限"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">隐藏权限</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#ACL访问控制列表"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">ACL访问控制列表</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#su命令和sudo服务"><span class="toc_mobile_items-number">2.5.</span> <span class="toc_mobile_items-text">su命令和sudo服务</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#SELinux"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">SELinux</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#防火墙"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">防火墙</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#VPN"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">VPN</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#安装"><span class="toc_mobile_items-number">5.1.</span> <span class="toc_mobile_items-text">安装</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#开启IP转发"><span class="toc_mobile_items-number">5.2.</span> <span class="toc_mobile_items-text">开启IP转发</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#用wg命令生成秘钥对"><span class="toc_mobile_items-number">5.3.</span> <span class="toc_mobile_items-text">用wg命令生成秘钥对</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#修改配置文件"><span class="toc_mobile_items-number">5.4.</span> <span class="toc_mobile_items-text">修改配置文件</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#启动wireguard服务"><span class="toc_mobile_items-number">5.5.</span> <span class="toc_mobile_items-text">启动wireguard服务</span></a></li></ol></li></ol></div></div><div id="body-wrap"><div id="web_bg"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#账户"><span class="toc-number">1.</span> <span class="toc-text">账户</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#useradd-创建用户账户"><span class="toc-number">1.1.</span> <span class="toc-text">useradd(创建用户账户)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#groupadd-创建组账户"><span class="toc-number">1.2.</span> <span class="toc-text">groupadd(创建组账户)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#id"><span class="toc-number">1.3.</span> <span class="toc-text">id</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#passwd-更新账户认证信息"><span class="toc-number">1.4.</span> <span class="toc-text">passwd(更新账户认证信息)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#usermod-修改用户的属性"><span class="toc-number">1.5.</span> <span class="toc-text">usermod(修改用户的属性)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#userdel-删除用户"><span class="toc-number">1.6.</span> <span class="toc-text">userdel(删除用户)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#groupdel-删除组账户"><span class="toc-number">1.7.</span> <span class="toc-text">groupdel(删除组账户)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#账户文件"><span class="toc-number">1.8.</span> <span class="toc-text">账户文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#权限"><span class="toc-number">2.</span> <span class="toc-text">权限</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#普通权限"><span class="toc-number">2.1.</span> <span class="toc-text">普通权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#特殊权限"><span class="toc-number">2.2.</span> <span class="toc-text">特殊权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#隐藏权限"><span class="toc-number">2.3.</span> <span class="toc-text">隐藏权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ACL访问控制列表"><span class="toc-number">2.4.</span> <span class="toc-text">ACL访问控制列表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#su命令和sudo服务"><span class="toc-number">2.5.</span> <span class="toc-text">su命令和sudo服务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SELinux"><span class="toc-number">3.</span> <span class="toc-text">SELinux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#防火墙"><span class="toc-number">4.</span> <span class="toc-text">防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VPN"><span class="toc-number">5.</span> <span class="toc-text">VPN</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#安装"><span class="toc-number">5.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#开启IP转发"><span class="toc-number">5.2.</span> <span class="toc-text">开启IP转发</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#用wg命令生成秘钥对"><span class="toc-number">5.3.</span> <span class="toc-text">用wg命令生成秘钥对</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#修改配置文件"><span class="toc-number">5.4.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动wireguard服务"><span class="toc-number">5.5.</span> <span class="toc-text">启动wireguard服务</span></a></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/Depository/Img/Post/)"><div id="post-info"><div id="post-title"><div class="posttitle">Linux账户与系统安全</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2019-10-14<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-07-09</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Linux/">Linux</a></span><div class="post-meta-wordcount"><span>Post View: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p><strong><center>Linux账户与系统安全</center></strong></p>
+<h4 id="账户"><a href="#账户" class="headerlink" title="账户"></a>账户</h4><ul>
+<li>管理员UID为0：系统的管理员用户</li>
+<li>系统用户UID为1～999：Linux系统为了避免因某个服务程序出现漏洞而被黑客提权至整台服务器，默认服务程序会有独立的系统用户负责运行，进而有效控制被破坏范围</li>
+<li>普通用户UID从1000开始：是由管理员创建的用于日常工作的用户</li>
+<li>UID不能冲突，管理员创建的普通用户的UID默认从1000开始，即使前面有闲置的号码</li>
+</ul>
+<p>组</p>
+<p>分为基础组和附加组，一个用户同一时间只能加入一个基本组，但可同时加入多个附加组</p>
+<p>创建用户时，会默认创建同名组，并设置用户加入该基本组</p>
+<h5 id="useradd-创建用户账户"><a href="#useradd-创建用户账户" class="headerlink" title="useradd(创建用户账户)"></a>useradd(创建用户账户)</h5><ul>
+<li>description  :  创建用户账户</li>
+<li>synopsis  :  useradd [option] username</li>
+<li>[option]  :<ul>
+<li>None  :  </li>
+<li>-c  :  设置账户描述信息，一般为账户全称</li>
+<li>-d  :  设置账户家目录，默认为/home/$USER</li>
+<li>-e  :  设置账户失效日期，格式为YYYY-MM-DD</li>
+<li>-g  :  设置账户的基本组</li>
+<li>-G  :  设置账户的附加组，多附加组之间用逗号隔开</li>
+<li>-M  :  不创建用户家目录</li>
+<li>-s  :  设置账户的登陆shell，默认为bash</li>
+<li>-u  :  指定用户UID</li>
+</ul>
+</li>
+</ul>
+<h5 id="groupadd-创建组账户"><a href="#groupadd-创建组账户" class="headerlink" title="groupadd(创建组账户)"></a>groupadd(创建组账户)</h5><ul>
+<li>description  :  创建组账户</li>
+<li>synopsis  :  groupadd [option] groupname</li>
+<li>[option]  :<ul>
+<li>None  :</li>
+<li>-g  :  设置组账户ID号</li>
+</ul>
+</li>
+</ul>
+<h5 id="id"><a href="#id" class="headerlink" title="id"></a>id</h5><ul>
+<li>description  :  显示账户及组信息</li>
+<li>synopsis  :  id username</li>
+</ul>
+<h5 id="passwd-更新账户认证信息"><a href="#passwd-更新账户认证信息" class="headerlink" title="passwd(更新账户认证信息)"></a>passwd(更新账户认证信息)</h5><ul>
+<li><p>description  :  更新账户认证信息</p>
+</li>
+<li><p>synopsis  :  passwd [option] username</p>
+</li>
+<li><p>[option]  :</p>
+<ul>
+<li>None  :  为当前用户设置新密码</li>
+<li>-l  :  锁定账户，仅root可使用该选项</li>
+<li>–stdin  :  允许通过标准输入修改用户密码(文件或管道读取密码)</li>
+<li>-u  :  解锁账户</li>
+<li>-d  :  快速清空账户密码，该用户可空密码登陆，仅root可使用该选项</li>
+<li>-e  :  强制用户在下次登陆时修改密码</li>
+<li>-s  :  显示用户的密码是否被锁定，以及密码所采用的加密算法名称<h5 id="usermod-修改用户的属性"><a href="#usermod-修改用户的属性" class="headerlink" title="usermod(修改用户的属性)"></a>usermod(修改用户的属性)</h5></li>
+</ul>
+</li>
+<li><p>description  :  修改用户的属性</p>
+</li>
+<li><p>synopsis  :  usermod [option] username</p>
+</li>
+<li><p>[option]  :</p>
+<ul>
+<li>None  :</li>
+<li>-c  :  填写用户的备注信息</li>
+<li>-d/-m  :  一般同时使用，-d选项重新指定用户的家目录，-m把旧数据转移过去</li>
+<li>-e  :  账户的到期时间，格式为YYYY-MM-DD</li>
+<li>-g  :  变更所属用户组</li>
+<li>-G  :  变更拓展用户组</li>
+<li>-L  :  锁定用户禁止其登陆系统</li>
+<li>-U  :  解锁用户，允许其登陆系统</li>
+<li>-s  :  变更默认终端</li>
+<li>-u  :  修改用户UID</li>
+</ul>
+</li>
+</ul>
+<h5 id="userdel-删除用户"><a href="#userdel-删除用户" class="headerlink" title="userdel(删除用户)"></a>userdel(删除用户)</h5><ul>
+<li>description  :  删除用户</li>
+<li>synopsis  :  userdel [option] username</li>
+<li>[option]  :<ul>
+<li>None  :  删除账户但账户的文件不删除</li>
+<li>-f  :  强制删除用户</li>
+<li>-r  :  同时删除用户及用户家目录</li>
+</ul>
+</li>
+</ul>
+<h5 id="groupdel-删除组账户"><a href="#groupdel-删除组账户" class="headerlink" title="groupdel(删除组账户)"></a>groupdel(删除组账户)</h5><ul>
+<li>description  :  删除组账户</li>
+<li>synopsis  :  groupdel [option] groupname</li>
+<li>[option]  :</li>
+</ul>
+<h5 id="账户文件"><a href="#账户文件" class="headerlink" title="账户文件"></a>账户文件</h5><ul>
+<li>/etc/passwd  :  用户账户信息文件</li>
+<li>/etc/shadow  :  用户账户密码文件</li>
+<li>/etc/group  :  组信息文件</li>
+<li>/etc/gshadow  :  组账户密码文件</li>
+</ul>
+<h4 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h4><h5 id="普通权限"><a href="#普通权限" class="headerlink" title="普通权限"></a>普通权限</h5><p>Linux权限主要分为可读(r,4)，可写(w,2)，可执行(x,1)三种</p>
+<ul>
+<li>对目录文件来说，可读表示能够读取目录内的文件列表；可写表示能够在目录内新增，删除，重命名文件；而可执行则表示能够进入该目录</li>
+</ul>
+<p>表：文件权限的字符与数字表示</p>
+<table>
+<thead>
+<tr>
+<th align="center">权限项</th>
+<th align="center">读</th>
+<th align="center">写</th>
+<th align="center">执行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">字符表示</td>
+<td align="center">r</td>
+<td align="center">w</td>
+<td align="center">x</td>
+</tr>
+<tr>
+<td align="center">数字表示</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<ul>
+<li>文件权限的数字法表示基于字符表示(rwx)的权限计算而来，例7代表可读可写可执行(4+2+1)</li>
+<li>rwxrw-r–数字表示法为764(764这三个数字分表表示文件所有者，文件所属组和其他用户的权限，不可再相加)</li>
+<li>ls -l显示文件详细信息，会显示文件的类型，访问权限，所有者，所属组，占用磁盘大小，修改时间和文件名称等信息</li>
+</ul>
+<p>chmod(修改文件或目录属性)</p>
+<ul>
+<li>description  :  修改文件属性</li>
+<li>synopsis  :  chmod [option] 权限 file/folder</li>
+<li>[option] :<ul>
+<li>None  :</li>
+<li>–reference=RFILE  :  根据参考文档设置权限</li>
+<li>-R  :  递归将权限应用于所有的子目录与子文件</li>
+</ul>
+</li>
+<li>权限  ：<ul>
+<li>使用完整的权限表示</li>
+<li>可用(u,g,o,a)(=,+,-)(w,r,x,4,2,1,t)来表示修改权限</li>
+</ul>
+</li>
+<li>Tips  :  chmod中，u代表所有者，g代表所属组，o代表其他用户，a代表所有用户</li>
+</ul>
+<p>chown(修改文件或目录的所有者与所属组)</p>
+<ul>
+<li>description  :  修改文件或目录的所有者与所属组</li>
+<li>synopsis  :  chown [option] 所有者:所属组 file/folder</li>
+<li>[option]  :<ul>
+<li>None  :</li>
+<li>-R  :  递归将权限应用于所有的子目录与子文件</li>
+</ul>
+</li>
+</ul>
+<h5 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h5><p>特殊权限可与一般权限同时使用，弥补一般权限不能实现的功能</p>
+<ul>
+<li>SUID</li>
+</ul>
+<p>SUID是一种对二进制程序进行设置的特殊权限，可以让二进制程序的执行者临时拥有属主的权限(仅对拥有执行权限的二进制程序有效)</p>
+<p>拥有SUID权限时，文件的所有者部分的x权限会变为s；如果原本原本权限没有x,则会显示为大写的S</p>
+<ul>
+<li>SGID</li>
+</ul>
+<p>SGID主要有两种功能：1,让执行者临时拥有属组的权限(对拥有执行权限的二进制程序进行设置)；2，在某个目录中创建的文件自动继承该目录的用户组(只可以对目录进行设置)</p>
+<p>在目录上设置SGID权限后，在这个目录下创建的文件或目录都会继承这个目录的用户组，而不是创建目录或文件的操作用户</p>
+<p>拥有SGID权限时，文件的所属组部分的x权限会变为s；</p>
+<ul>
+<li>SBIT</li>
+</ul>
+<p>SBIT特殊权限位可确保用户只能删除自己的文件，而不能删除其他用户的文件(当对某个目录设置了SBIT粘滞位权限后，那么该目录中的文件就只能被其所有者执行删除操作了)</p>
+<p>当目录被设置SBIT特殊权限位后，文件的其他人权限部分的x执行权限就会被替换成t或T，原本有x执行权限则会写成t，原本没有x执行权限则会被写成T</p>
+<p>文件能否被删除并不取决于自身的权限，而是看其所在目录是否有写入权限</p>
+<h5 id="隐藏权限"><a href="#隐藏权限" class="headerlink" title="隐藏权限"></a>隐藏权限</h5><p>隐藏权限默认情况下不能直接被用户发觉</p>
+<ul>
+<li><p>chattr</p>
+</li>
+<li><p>description  :  设置文件的隐藏权限</p>
+</li>
+<li><p>synopsis  :  chattr [option] file</p>
+</li>
+<li><p>[option]  :</p>
+<ul>
+<li>i  :  无法对文件进行修改；若对目录设置了该参数，则仅能修改其中的子文件内容而不能新建或删除文件</li>
+<li>a  :  仅允许补充(追加)内容，无法覆盖/删除内容(Append Only)</li>
+<li>S  :  文件内容在变更后立即同步到硬盘</li>
+<li>s  :  彻底从硬盘中删除，不可恢复(用0填充原文件所在硬盘区域)</li>
+<li>A  :  不再修改这个文件或目录的最后访问时间</li>
+<li>b  :  不再修改文件或目录的存取时间</li>
+<li>D  :  检查压缩文件中的错误</li>
+<li>d  :  使用dump命令备份时忽略本文件/目录</li>
+<li>c  :  默认将文件或目录进行压缩</li>
+<li>u  :  当删除该文件后依然保留其在硬盘中的数据，方便日后恢复</li>
+<li>t  :  让文件系统支持尾部合并(tail-merging)</li>
+<li>X  :  可以直接访问压缩文件中的内容</li>
+</ul>
+</li>
+<li><p>Tips  :  如果想把某个隐藏功能添加到文件上，则需要在命令后追加“+参数”，如果需要把某个命令移除出文件，则需要追加“-参数”</p>
+</li>
+</ul>
+<ul>
+<li><p>lsattr</p>
+</li>
+<li><p>description  :  显示文件的隐藏属性</p>
+</li>
+<li><p>synopsis  :  lsattr [option] file</p>
+</li>
+<li><p>[option]  :</p>
+<ul>
+<li>None  :</li>
+</ul>
+</li>
+<li><p>Tips  :  可用lsattr显示文件的隐藏权限，此时可用chattr去掉权限</p>
+</li>
+</ul>
+<h5 id="ACL访问控制列表"><a href="#ACL访问控制列表" class="headerlink" title="ACL访问控制列表"></a>ACL访问控制列表</h5><p>一般权限，特殊权限，隐藏权限都是针对某一类用户设置的</p>
+<p>对某一个指定的用户进行单独的权限控制，就需要用到文件的访问控制列表(ACL)，基于普通文件或目录设置ACL其实就是针对指定的用户或用户组设置文件或目录的操作权限</p>
+<p>如果针对某个目录设置了ACL，则目录中的文件会继承ACL；若针对文件设置了ACL，则文件不再继承所在目录的ACL</p>
+<ul>
+<li>setfacl</li>
+<li>description  :  管理文件的ACL规则</li>
+<li>synopsis  :  setfacl [option] u:username:权限 file</li>
+<li>[option]  :<ul>
+<li>-R  :  针对目录文件使用，递归参数</li>
+<li>-m  :  普通文件使用</li>
+<li>-b  :  删除ACL</li>
+</ul>
+</li>
+<li>Tips  :  设置ACL权限后，在文件详细信息中权限最后一个.变为+号</li>
+</ul>
+<hr>
+<ul>
+<li>getfacl</li>
+<li>description  :  显示文件上设置的ACL信息</li>
+<li>synopsis  :  getfacl file</li>
+</ul>
+<hr>
+<h5 id="su命令和sudo服务"><a href="#su命令和sudo服务" class="headerlink" title="su命令和sudo服务"></a>su命令和sudo服务</h5><hr>
+<ul>
+<li>su</li>
+</ul>
+<p>可以使用su命令来切换当前用户，并且原用户不退出登录</p>
+<ul>
+<li>description  :  切换当前用户</li>
+<li>synopsis  :  su [-/None] [username/None]</li>
+</ul>
+<p>su和用户名之间用加-时，表示完全切换到新的用户，即把环境变量信息也变更为新用户的相应信息，而不保留原是信息；root切换到普通用户不需要密码，普通用户切换到root用户需要密码</p>
+<p>–</p>
+<ul>
+<li>sudo</li>
+<li>description  :  </li>
+<li>synopsis  :  sudo [option] 命令名称</li>
+<li>[option]  :<ul>
+<li>None  :</li>
+<li>-h  :  列出帮助信息</li>
+<li>-l  :  列出当前用户可执行的命令</li>
+<li>-u 用户名/UID  :  以指定的用户身份执行命令</li>
+<li>-k  :  清空密码的有效时间，下次执行sudo时需要再次进行密码验证</li>
+<li>-b  :  在后台执行指定的指令</li>
+<li>-p  :  更改询问密码的提示语</li>
+</ul>
+</li>
+<li>Tips  :<ul>
+<li>限制用户执行指定的命令</li>
+<li>记录用户执行的每一条命令</li>
+<li>配置文件(/etc/sudoers)提供集中的用户管理，权限与主机等参数</li>
+<li>验证密码5分钟内(默认值)无须再让用户再次验证密码</li>
+<li>可用visudo命令来配置用户权限(只有root才可以使用visudo命令，visudo基本操作和vim编辑器一样)</li>
+<li>/etc/sudoers配置文件一行表示：谁可以使用 允许使用的主机=(以谁的身份) 可执行命令的列表</li>
+<li>可添加NOPASSWD参数，使得用户执行sudo命令时不再需要输入密码</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h4><p>SELinux(Security-Enhanced Linux)是基于Linux内核的强访问控制机制(MAC)实现，它是由美国国家安全局开发的项目，旨在增强传统Linux操作系统的安全性</p>
+<ul>
+<li>使用SELinux后，系统中的文件，目录，设备甚至是端口都作为对象，而用户运行的进程则被当作主题，一个主题能不能访问对象，首先系统会检查传统的账户权限是否允许(DAC控制权限)，如果传统的基于账户的访问权限允许，才会检查SELinux的强制访问控制(MAC访问控制)，SELinux依靠策略来决定是否允许主题访问目标对象</li>
+</ul>
+<hr>
+<h4 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h4><p>iptables为目前主流防火墙命令工具，nftables将逐步取代iptables</p>
+<p>nftables及iptables都为用户命令行工具，其防火墙实现内核为netfilter，bpfilter将逐步取代netfilter</p>
+<p>ufw为Ubuntu对iptables的高层封装实现<br>firewalld为Redhat对iptables的高层封装实现</p>
+<hr>
+<ul>
+<li>ufw </li>
+</ul>
+<p>如果是debian系系统，又对防火墙要求不高，可用最简单易用的ufw来管理防火墙规则</p>
+<p>descriprion  :<br>synopsis  :  ufw [option] Post<br>[option]  :</p>
+<ul>
+<li></li>
+</ul>
+<hr>
+<ul>
+<li>nftables</li>
+</ul>
+<p>地址族：ip , ipv6 , inet , arp , bridge , netdev</p>
+<p>典型的nftables规则包含三个部分：表，链和规则</p>
+<p>表是链和规则的容器；它们由其地址族和名称来标识；链包含inet/arp/bridge/netdev等协议所需的规则，并具有三种类型：过滤器，NAT和路由；nftables规则可以从脚本加载，也可以在终端键入，然后另存为规则集</p>
+<p>对于家庭用户，默认链为过滤器。inet系列包含以下钩子：Input,Output,Forward,Pre-routing,Post-routing</p>
+<p>nftables使用一个名为nft的程序来添加,创建,列出,删除和加载规则</p>
+<p>nftables conntrackd netfilter-persistent</p>
+<p>防火墙包含三部分：输入(input)，转发(forward)，输出(output)</p>
+<p>基础操作</p>
+<ul>
+<li><p>增<br>增加表：nft add table filter<br>增加链：nft add chain filter input {}<br>增加规则：nft add rule filter input tcp dport 22 accept</p>
+</li>
+<li><p>删<br>只需要将增加中的add改为delete即可</p>
+</li>
+<li><p>改<br>更改链名用rename<br>更改规则用replace</p>
+</li>
+<li><p>查<br>nft list ruleset #列出所有规则<br>nft list tables  #列出所有表<br>nft list table filter  #列出filter表<br>nft chain filter input  #列出filter表input链<br>#以上命令后面也可以加-nn用于不解析ip地址和端口<br>#加-a用于显示handles</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>bpfilter</li>
+</ul>
+<hr>
+<h4 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h4><p>wireguard</p>
+<p>wireguard是一个较新的高性能VPN，它设计精巧，核心代码仅四千多行，被Linux之父Linus称为“艺术品”</p>
+<p>wireguard基于UDP传输</p>
+<p>wireguard已经被集成进Linux5.6内核中(内核版本低于5.6需要安装)</p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><p>安装以debian tseting版本为例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install wireguard</span><br></pre></td></tr></table></figure>
+
+<h5 id="开启IP转发"><a href="#开启IP转发" class="headerlink" title="开启IP转发"></a>开启IP转发</h5><p>修改/etc/sysctl.conf文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+
+<p>将<code>net.ipv4.ip_forward=1</code>前注释去掉，没有就添加该内容</p>
+<p>最后用<code>sysctl -p</code>命令使修改立即生效</p>
+<p>Tips: centos7需要在<code>/usr/lib/sysctl.d/50-default.conf</code>中加入<code>net.ipv4.ip_forward=1</code></p>
+<h5 id="用wg命令生成秘钥对"><a href="#用wg命令生成秘钥对" class="headerlink" title="用wg命令生成秘钥对"></a>用wg命令生成秘钥对</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wg genkey | tee privatekey | wg pubkey &gt; publickey</span><br><span class="line"><span class="comment"># 先用wg生成私钥，再用wg根据私钥生成公钥</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>base64加密</li>
+<li>生成的为一对密钥对，配置wireguard时，服务端及每一个客户端各需要一对密钥对</li>
+</ul>
+<h5 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><p>配置文件为<code>/etc/wireguard/wg0.conf</code></p>
+<p>服务端配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 配置文件中的wg配置文件名wg0对应配置文件中的wg0,配置文件中的eth0表示本机网卡名称，可用ifconfig查看那网卡名称</span><br><span class="line">[Interface]</span><br><span class="line">Address = (虚拟网络设备的内网IP地址)</span><br><span class="line">SaveConfig = True</span><br><span class="line">PrivateKey = 服务器私钥(私钥内容，不是文件名或路径)</span><br><span class="line">ListenPort = 端口号</span><br><span class="line">PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARE -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</span><br><span class="line">PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARE -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE</span><br><span class="line">DNS = </span><br><span class="line">MTU = 1420</span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = 客户端公钥(公钥内容，不是文件名或路径)</span><br><span class="line">AllowedIPs =</span><br></pre></td></tr></table></figure>
+
+<p>客户端配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Interface]</span><br><span class="line">Address = 客户端ip地址</span><br><span class="line">PrivateKey = 客户端密钥</span><br><span class="line">ListenPort = </span><br><span class="line">MTU = 1420</span><br><span class="line">DNS = (服务器ip地址或其它)</span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = 服务器的公钥</span><br><span class="line">Endpoint = (服务器IP地址:端口)</span><br><span class="line">AllowedIPs = 0.0.0.0/0</span><br><span class="line">PersistentKeepalive = 25</span><br></pre></td></tr></table></figure>
+
+<h5 id="启动wireguard服务"><a href="#启动wireguard服务" class="headerlink" title="启动wireguard服务"></a>启动wireguard服务</h5><p>启动wireguard服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wg-quick up wg0</span><br></pre></td></tr></table></figure>
+
+<p>停止wireguard服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wg-quick down wg0</span><br></pre></td></tr></table></figure>
+
+<p>设置开机自动启动wireguard服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> wg-quick@wg0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Tips  :  如果出现配置失败无法连接网络等情况，检查防火墙</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Everett</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://EverettHuang.github.io/2019/10/14/004/">https://EverettHuang.github.io/2019/10/14/004/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux    </a></div><div class="post_share"></div></div><div class="post-reward"><a class="reward-button"><i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" src="/Depository/Pay/03.png"><div class="post-qr-code__desc">WeChat</div></li><li class="reward-item"><img class="lozad post-qr-code__img" src="/Depository/Pay/02.png"><div class="post-qr-code__desc">AliPay</div></li><li class="reward-item"><img class="lozad post-qr-code__img" src="/Depository/Pay/01.png"><div class="post-qr-code__desc">PayPal</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-left"><a href="/2019/10/15/005/"><img class="prev_cover" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>Linux存储结构与磁盘管理</span></div></a></div><div class="next-post pull-right"><a href="/2019/10/13/008/"><img class="next_cover" src="/Depository/Img/Post/" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"><div class="label">Next Post</div><div class="next_info"><span>Linux基础网络服务</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> Recommend</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/10/10/001/" title="Linux运维"><img class="relatedPosts_cover " src="/Depository/Img/Post/"><div class="relatedPosts_title">Linux运维</div></a></div><div class="relatedPosts_item"><a href="/2019/10/12/003/" title="Linux文件编辑"><img class="relatedPosts_cover " src="/Depository/Img/Post/"><div class="relatedPosts_title">Linux文件编辑</div></a></div><div class="relatedPosts_item"><a href="/2019/10/15/005/" title="Linux存储结构与磁盘管理"><img class="relatedPosts_cover " src="/Depository/Img/Post/"><div class="relatedPosts_title">Linux存储结构与磁盘管理</div></a></div></div><div class="clear_both"></div></div></div></div><footer style="background-image: url(/Depository/Img/Post/)"><div id="footer"><div class="copyright">&copy;2019 - 2020 By Everett</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">Welcome to My <a href="https://everetthuang.github.io/">Personal Home Page</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><i class="nightshift fa fa-moon-o" id="nightshift" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="Scroll to comment"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/nightshift.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script></body></html>

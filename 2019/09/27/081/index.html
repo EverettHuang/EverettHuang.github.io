@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>A simple way to build Trojan service on Debian | Everett</title><meta name="description" content="A simple way to build Trojan service on Debian"><meta name="keywords" content="trojan"><meta name="author" content="Everett"><meta name="copyright" content="Everett"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/Depository/Img/WebSite/01.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://EverettHuang.github.io/2019/09/27/081/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="A simple way to build Trojan service on Debian"><meta name="twitter:description" content="A simple way to build Trojan service on Debian"><meta name="twitter:image" content="https://EverettHuang.github.io/Depository/Img/Post/0028.png"><meta property="og:type" content="article"><meta property="og:title" content="A simple way to build Trojan service on Debian"><meta property="og:url" content="https://EverettHuang.github.io/2019/09/27/081/"><meta property="og:site_name" content="Everett"><meta property="og:description" content="A simple way to build Trojan service on Debian"><meta property="og:image" content="https://EverettHuang.github.io/Depository/Img/Post/0028.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="prev" title="linux(debian)折腾日志" href="https://EverettHuang.github.io/2019/09/29/086/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Bookmark',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  copyright: undefined,
+  copy_copyright_js: false
+  
+}</script></head><body><div id="header"> <div id="page-header"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Everett</a></span><i class="fa fa-bars fa-fw toggle-menu pull-right close" aria-hidden="true"></i><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right" id="search_button"></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lozad avatar_img" src="/Depository/Img/WebSite/02.png" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is_center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is_center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">3</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Trojan工作原理浅析"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">Trojan工作原理浅析</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#安装trojan服务"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">安装trojan服务</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#安装acme脚本获取证书"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">安装acme脚本获取证书</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#使用cloudflare-DNS验证的情况"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">使用cloudflare DNS验证的情况</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#不使用cloudflare-DNS验证的情况："><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">不使用cloudflare DNS验证的情况：</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#配置nginx"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">配置nginx</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#运行trojan及nginx并设置开机自启"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">运行trojan及nginx并设置开机自启</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#启用BBR"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">启用BBR</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#配置防火墙"><span class="toc_mobile_items-number">7.</span> <span class="toc_mobile_items-text">配置防火墙</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#其他问题"><span class="toc_mobile_items-number">8.</span> <span class="toc_mobile_items-text">其他问题</span></a></li></ol></div></div><div id="body-wrap"><div id="web_bg"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Trojan工作原理浅析"><span class="toc-number">1.</span> <span class="toc-text">Trojan工作原理浅析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装trojan服务"><span class="toc-number">2.</span> <span class="toc-text">安装trojan服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装acme脚本获取证书"><span class="toc-number">3.</span> <span class="toc-text">安装acme脚本获取证书</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用cloudflare-DNS验证的情况"><span class="toc-number">3.1.</span> <span class="toc-text">使用cloudflare DNS验证的情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不使用cloudflare-DNS验证的情况："><span class="toc-number">3.2.</span> <span class="toc-text">不使用cloudflare DNS验证的情况：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置nginx"><span class="toc-number">4.</span> <span class="toc-text">配置nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行trojan及nginx并设置开机自启"><span class="toc-number">5.</span> <span class="toc-text">运行trojan及nginx并设置开机自启</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启用BBR"><span class="toc-number">6.</span> <span class="toc-text">启用BBR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置防火墙"><span class="toc-number">7.</span> <span class="toc-text">配置防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他问题"><span class="toc-number">8.</span> <span class="toc-text">其他问题</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/Depository/Img/Post/0027.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">A simple way to build Trojan service on Debian</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2019-09-27<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-07-09</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Other/">Other</a></span><div class="post-meta-wordcount"><span>Post View: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p><strong><center>A simple way to nuild Trojan service on Debian</center></strong></p>
+<p>本文   仅供参考！仅供参考！仅供参考！</p>
+<p>本文为在debian搭建trojan精简方法，详细搭建trojan教程请参考<a href="https://trojan-tutor.github.io/2019/04/10/p41.html" target="_blank" rel="noopener">自建梯子教程 –Trojan版本</a></p>
+<hr>
+<h3 id="Trojan工作原理浅析"><a href="#Trojan工作原理浅析" class="headerlink" title="Trojan工作原理浅析"></a>Trojan工作原理浅析</h3><p><img src="https://everetthuang.github.io/Depository/Img/Post/0029.png" alt="Trojan工作原理浅析" title="Trojan工作原理解析"></p>
+<hr>
+<h3 id="安装trojan服务"><a href="#安装trojan服务" class="headerlink" title="安装trojan服务"></a>安装trojan服务</h3><p><em>搭建前请自行购买VPS，购买域名，并将域名解析到VPS对应的IP上</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install trojan</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="安装acme脚本获取证书"><a href="#安装acme脚本获取证书" class="headerlink" title="安装acme脚本获取证书"></a>安装acme脚本获取证书</h3><p><strong><em>以下申请证书步骤中&lt;tdom.ml&gt;均改为自己的域名</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install curl socat</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl  https://get.acme.sh | sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用cloudflare-DNS验证的情况"><a href="#使用cloudflare-DNS验证的情况" class="headerlink" title="使用cloudflare DNS验证的情况"></a>使用cloudflare DNS验证的情况</h4><p><strong>1.添加cloudflare Global CA Key</strong></p>
+<p>登录cloudflare之后定位到：头像&gt;&gt;My Profile&gt;&gt;API Tokens。找到Global API Key，点击View即可查看，注意查看之后自己保存下来，每天可查看次数是有限制的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CF_Key=<span class="string">"&lt;Your Global API Key&gt;"</span></span><br><span class="line"><span class="built_in">export</span> CF_Email=<span class="string">"&lt;Your cloudflare account Email&gt;"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2.申请证书</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.acme.sh/acme.sh --issue --dns dns_cf -d &lt;tdom.ml&gt; -k ec-384</span><br></pre></td></tr></table></figure>
+
+<p><em>执行完以后最后几行全是绿色字体即为申请成功</em></p>
+<p><strong>3.安装证书</strong></p>
+<p>安装证书到<code>/etc/trojan/</code>路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.acme.sh/acme.sh --install-cert -d &lt;tdom.ml&gt; --key-file /etc/trojan/private.key --fullchain-file /etc/trojan/certificate.crt --ecc</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.配置证书自动更新及赋予证书和trojan配置文件700权限：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.acme.sh/acme.sh  --upgrade  --auto-upgrade</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 /etc/trojan/</span><br></pre></td></tr></table></figure>
+
+<h4 id="不使用cloudflare-DNS验证的情况："><a href="#不使用cloudflare-DNS验证的情况：" class="headerlink" title="不使用cloudflare DNS验证的情况："></a>不使用cloudflare DNS验证的情况：</h4><p><strong>1.申请证书</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.acme.sh/acme.sh --issue -d &lt;tdom.ml&gt; --standalone -k ec-384</span><br></pre></td></tr></table></figure>
+
+<p><em>执行完以后最后几行全是绿色字体即为申请成功</em></p>
+<p><strong>2.安装证书</strong></p>
+<p>安装证书到<code>/etc/trojan/</code>路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.acme.sh/acme.sh --installcert -d &lt;tdom.ml&gt; --fullchainpath /etc/trojan/certificate.crt --keypath /etc/trojan/private.key --ecc</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.配置证书自动更新及赋予证书和trojan配置文件700权限：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~/.acme.sh/acme.sh  --upgrade  --auto-upgrade</span><br><span class="line">chmod -R 777 /etc/trojan/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h3><p>将<code>default</code>中的域名和ip改成自己的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install nginx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 127.0.0.1:80 http2 default_server;</span><br><span class="line"></span><br><span class="line">    server_name &lt;tdom.ml&gt;;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">#       root /var/www/html;</span><br><span class="line">#       index index.html;</span><br><span class="line">        proxy_pass https://everett.ml;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 127.0.0.1:80;</span><br><span class="line"></span><br><span class="line">    server_name &lt;www.tdom.ml&gt; &lt;10.10.10.10&gt;;</span><br><span class="line"></span><br><span class="line">    return 301 https://&lt;tdom.ml&gt;$request_uri;</span><br><span class="line">&#125;</span><br><span class="line">#server &#123;</span><br><span class="line">#    listen 80;</span><br><span class="line">#    listen [::]:80;</span><br><span class="line">#</span><br><span class="line">#    server_name &lt;www.tdom.ml&gt; &lt;10.10.10.10&gt; &lt;tdom.ml&gt;;</span><br><span class="line">#</span><br><span class="line">#    return 301 https://&lt;tdom.ml&gt;$request_uri;</span><br><span class="line">#&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="运行trojan及nginx并设置开机自启"><a href="#运行trojan及nginx并设置开机自启" class="headerlink" title="运行trojan及nginx并设置开机自启"></a>运行trojan及nginx并设置开机自启</h3><p><strong>1.启动trojan及重启nginx</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start trojan</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.查看nginx和trojan运行状态</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status trojan</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status nginx</span><br></pre></td></tr></table></figure>
+
+<p><em>如果nginx或者trojan服务未正常运行，查看状态时会显示未运行原因(一般为没有权限读取配置文件或配置文件中出现中文符号错误)，按提示解决即可</em></p>
+<p><strong>3.设置trojan开机自启</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> trojan</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="启用BBR"><a href="#启用BBR" class="headerlink" title="启用BBR"></a>启用BBR</h3><p><em>bbr是谷歌开发的网络控制算法，可以加快访问速度</em></p>
+<p>执行下面命令查看当前系统是否启用bbr(如果提示<code>net.ipv4.tcp_congestion_control = bbr</code>即表示启动了bbr)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
+
+<p><em>如果执行上述命令显示开启了BBR，跳过启动BBR步骤</em></p>
+<p>直接将下面三条命令拷贝粘贴到Xshell里面执行即可启动bbr，检查启动状态同上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -c <span class="string">'echo "net.core.default_qdisc=fq" &gt;&gt; /etc/sysctl.conf'</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -c <span class="string">'echo "net.ipv4.tcp_congestion_control=bbr" &gt;&gt; /etc/sysctl.conf'</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h3><p><em>只打开ssh、80和443端口可以有效的阻止外部恶意流量，降低服务器暴露的风险(自己有其他服务记得其他服务的端口也要处理)</em></p>
+<p><strong>1.安装ufw</strong></p>
+<p><em>ufw是一个很好用的防火墙配置命令</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install ufw</span><br></pre></td></tr></table></figure>
+
+<p><em>如果服务器无IPv6地址那么需要执行如下命令，将<code>IPV6=yes</code>修改为<code>IPV6=no</code></em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/default/ufw</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.执行如下命令即可成功配置防火墙</strong></p>
+<p><em>注意，如果ssh端口不是22那么将ssh改为端口号</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow ssh</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow https</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow http</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw status</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw status verbose</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><p>1.搬瓦工debian10目前有个小BUG，需要将<code>/etc/network/interfaces</code>中最后<code>eth1</code>两行注释或者删除才可正常使用</p>
+<hr>
+<blockquote>
+<p>相关链接</p>
+</blockquote>
+<ul>
+<li><p><a href="https://trojan-tutor.github.io/2019/04/10/p41.html" target="_blank" rel="noopener">自建梯子教程 –Trojan版本</a></p>
+</li>
+<li><p><a href="https://trojan-tutor.github.io/2019/06/08/p43.html" target="_blank" rel="noopener">Trojan-Panel配置</a></p>
+</li>
+<li><p><a href="https://github.com/trojan-gfw/trojan" target="_blank" rel="noopener">trojan项目Github地址</a></p>
+</li>
+</ul>
+<hr>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Everett</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://EverettHuang.github.io/2019/09/27/081/">https://EverettHuang.github.io/2019/09/27/081/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/trojan/">trojan    </a></div><div class="post_share"></div></div><div class="post-reward"><a class="reward-button"><i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" src="/Depository/Pay/03.png"><div class="post-qr-code__desc">WeChat</div></li><li class="reward-item"><img class="lozad post-qr-code__img" src="/Depository/Pay/02.png"><div class="post-qr-code__desc">AliPay</div></li><li class="reward-item"><img class="lozad post-qr-code__img" src="/Depository/Pay/01.png"><div class="post-qr-code__desc">PayPal</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-full"><a href="/2019/09/29/086/"><img class="prev_cover" src="/Depository/Img/Post/0011.png" onerror="onerror=null;src='/Depository/Img/WebSite/12.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>linux(debian)折腾日志</span></div></a></div></nav></div></div><footer style="background-image: url(/Depository/Img/Post/0027.jpg)"><div id="footer"><div class="copyright">&copy;2019 - 2020 By Everett</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">Welcome to My <a href="https://everetthuang.github.io/">Personal Home Page</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><i class="nightshift fa fa-moon-o" id="nightshift" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="Scroll to comment"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/nightshift.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script></body></html>
