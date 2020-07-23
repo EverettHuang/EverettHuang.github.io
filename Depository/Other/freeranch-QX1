@@ -1,2 +1,0 @@
-trojan=blog.freeranch.ml:443, password=FreeRanchZZZ, over-tls=true, tls-verification=true, fast-open=false, udp-relay=true, tag=BWG-GIA=DC6
-trojan=www.freeranch.ml:443, password=FreeRanchZZZ, over-tls=true, tls-verification=true, fast-open=false, udp-relay=true, tag=BWG-GIA=DC9
