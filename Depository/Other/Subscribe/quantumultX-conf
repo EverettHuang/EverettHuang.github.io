@@ -51,7 +51,7 @@ https://raw.githubusercontent.com/EverettHuang/EverettHuang.github.io/master/Dep
 #https://github.com/Koolson/Qure
 static= Apple, proxy, direct, reject, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
 static= Netflix, proxy, direct, reject, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Netflix.png
-static= Unbreak, proxy, direct, reject, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Quantumult_X.png
+#static= Unbreak, proxy, direct, reject, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Quantumult_X.png
 #static= Global, proxy, direct, reject, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png
 static= China, proxy, direct, reject, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/China_Map.png
 # static 策略组中，你需要手动选择想要的节点/策略组。
@@ -84,7 +84,7 @@ static= China, proxy, direct, reject, img-url=https://raw.githubusercontent.com/
 #支持本地/iCloud规则文件，位于Quantumult X/Profiles路径下
 #filter.txt, tag=XXXX, enabled=true
 #https://github.com/ConnersHua/Profiles/tree/master/Quantumult/X/Filter/Media
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Unbreak.list, update-interval=86400, enabled=true, tag=Unbreak
+#https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Unbreak.list, update-interval=86400, enabled=true, tag=Unbreak
 https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Netflix.list, update-interval=86400, enabled=true, tag=Netflix
 https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Apple.list, update-interval=86400, enabled=true, tag=Apple
 #https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Global.list, update-interval=86400, enabled=true, tag=Global
