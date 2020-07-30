@@ -105,6 +105,18 @@ https://raw.githubusercontent.com/EverettHuang/EverettHuang.github.io/master/Dep
 #支持本地/iCloud规则文件，位于Quantumult X/Profiles路径下
 #filter.txt, tag=本地分流, enabled=false
 
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Telegram.list, update-interval=86400, enabled=true, tag=Telegram
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/PayPal.list, update-interval=86400, enabled=true, tag=PayPal
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Google.list, update-interval=86400, enabled=true, tag=Google
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Cloudflare.list, update-interval=86400, enabled=true, tag=Cloudflare
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Amazon.list, update-interval=86400, enabled=true, tag=Amazon
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Netflix.list, update-interval=86400, enabled=true, tag=Netflix
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Spotify.list, update-interval=86400, enabled=true, tag=Spotify
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Twitch.list, update-interval=86400, enabled=true, tag=Twitch
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/YouTube.list, update-interval=86400, enabled=true, tag=YouTube
+
+
+
 
 
 #rewrite 复写远程订阅
