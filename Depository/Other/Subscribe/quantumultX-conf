@@ -50,7 +50,7 @@ https://raw.githubusercontent.com/EverettHuang/EverettHuang.github.io/master/Dep
 static= Apple, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
 static= Netflix, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Netflix.png
 static= Unbreak, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Quantumult_X.png
-static= Global, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png
+#static= Global, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png
 static= China, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/China_Map.png
 # static 策略组中，你需要手动选择想要的节点/策略组。
 # available 策略组将按顺序选择你列表中第一个可用的节点。
@@ -85,7 +85,7 @@ static= China, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/Ic
 https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Unbreak.list, update-interval=86400, enabled=true, tag=Unbreak
 https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Netflix.list, update-interval=86400, enabled=true, tag=Netflix
 https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Apple.list, update-interval=86400, enabled=true, tag=Apple
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Global.list, update-interval=86400, enabled=true, tag=Global
+#https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Global.list, update-interval=86400, enabled=true, tag=Global
 https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/China.list, update-interval=86400, enabled=true, tag=China
 
 
