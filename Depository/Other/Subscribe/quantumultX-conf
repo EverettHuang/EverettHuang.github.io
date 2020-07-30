@@ -1,5 +1,6 @@
 #--------------------------------------------------------------#
-
+# Email:freeeverettmail@gmail.com
+#--------------------------------------------------------------#
 
 [general]
 #general 模块内为一些通用的设置参数项
@@ -47,11 +48,11 @@ https://raw.githubusercontent.com/EverettHuang/EverettHuang.github.io/master/Dep
 [policy]
 #以下为策略组[policy]部分
 #https://github.com/Koolson/Qure
-static= Apple, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
-static= Netflix, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Netflix.png
-static= Unbreak, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Quantumult_X.png
-#static= Global, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png
-static= China, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/China_Map.png
+static= Apple, proxy, direct, reject, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
+static= Netflix, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Netflix.png
+static= Unbreak, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Quantumult_X.png
+#static= Global, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png
+static= China, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/China_Map.png
 # static 策略组中，你需要手动选择想要的节点/策略组。
 # available 策略组将按顺序选择你列表中第一个可用的节点。
 # round-robin 策略组，将按列表的顺序轮流使用其中的节点。
