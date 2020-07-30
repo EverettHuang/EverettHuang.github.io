@@ -47,15 +47,11 @@ https://raw.githubusercontent.com/EverettHuang/EverettHuang.github.io/master/Dep
 [policy]
 #以下为策略组[policy]部分
 #https://github.com/Koolson/Qure
-static= Cloudflare, direct, proxy, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Cloudflare.png
-static= Telegram, direct, proxy, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Telegram.png
-static= Apple, direct, proxy, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
-static= YouTube, proxy, direct, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/YouTube.png
-static= Netflix, proxy, direct, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Netflix.png
-static= Facebook, proxy, direct, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Facebook.png
-static= Google, proxy, direct, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Google.png
-static= Spotify, proxy, direct, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Spotify.png
-static= PayPal, proxy, direct, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/PayPal.png
+static= Apple, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
+static= Netflix, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Netflix.png
+static= Unbreak, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Quantumult_X.png
+static= Global, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png
+static= China, img-url= https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/China_Map.png
 # static 策略组中，你需要手动选择想要的节点/策略组。
 # available 策略组将按顺序选择你列表中第一个可用的节点。
 # round-robin 策略组，将按列表的顺序轮流使用其中的节点。
@@ -86,15 +82,11 @@ static= PayPal, proxy, direct, img-url=https://raw.githubusercontent.com/Koolson
 #支持本地/iCloud规则文件，位于Quantumult X/Profiles路径下
 #filter.txt, tag=XXXX, enabled=true
 #https://github.com/ConnersHua/Profiles/tree/master/Quantumult/X/Filter/Media
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Telegram.list, update-interval=86400, enabled=true, tag=Telegram
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/PayPal.list, update-interval=86400, enabled=true, tag=PayPal
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Google.list, update-interval=86400, enabled=true, tag=Google
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Cloudflare.list, update-interval=86400, enabled=true, tag=Cloudflare
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Amazon.list, update-interval=86400, enabled=true, tag=Amazon
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Unbreak.list, update-interval=86400, enabled=true, tag=Unbreak
 https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Netflix.list, update-interval=86400, enabled=true, tag=Netflix
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Spotify.list, update-interval=86400, enabled=true, tag=Spotify
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/Twitch.list, update-interval=86400, enabled=true, tag=Twitch
-https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Media/YouTube.list, update-interval=86400, enabled=true, tag=YouTube
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Apple.list, update-interval=86400, enabled=true, tag=Apple
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Global.list, update-interval=86400, enabled=true, tag=Global
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/China.list, update-interval=86400, enabled=true, tag=China
 
 
 #--------------------------------------------------------------#
@@ -148,9 +140,9 @@ ip-cidr, 172.16.0.0/12, direct
 ip-cidr, 192.168.0.0/16, direct
 ip-cidr, 224.0.0.0/24, direct
 # 已采用 ip 池数据，因此注释掉 geoip cn
-#geoip, cn, direct
+geoip, cn, direct
 #不在上述规则中(远程以及本地)的剩余请求，将走final 指定的节点/策略
-final, direct
+final, proxy
 
 
 #--------------------------------------------------------------#
