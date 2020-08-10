@@ -21,7 +21,7 @@ set $down j
 set $up k
 set $right l
 #  首选终端模拟器
-set $term sakura
+set $term terminator
 #  首选应用启动器
 set $menu dmenu_run
 #
@@ -43,7 +43,7 @@ exec swayidle -w \
          before-sleep 'swaylock -f -i /home/everett/Pictures/029.jpg' \
 #
 #  设置壁纸
-output "*" bg /home/everett/Pictures/Yosemite5.jpg fill
+output "*" bg /home/everett/Pictures/001.jpg fill
 #
 #  笔记本快捷键亮度音量调节
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -57,6 +57,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 #  采用i3status，需要apt install i3status
 bar {
 
+    mode hide
     position top
     font pango: 9
     status_command i3status -c ~/.config/sway/i3status.conf
@@ -76,8 +77,8 @@ bar {
 #default_border pixel 2
 #default_floating_border pixel 2
 #  间隙设置
-gaps outer 2
-gaps inner 2
+#gaps outer 2
+#gaps inner 2
 #
 #  隐藏光标 (5 秒)
 seat * hide_cursor 5000
@@ -116,8 +117,8 @@ bindsym $Mod+2 workspace "2:Chrome"
 bindsym $Mod+3 workspace "3:Vscode" 
 bindsym $Mod+4 workspace "4:Vlc" 
 bindsym $Mod+5 workspace "5:Spotify" 
-bindsym $Mod+6 workspace "6:KVM-Windows"
-bindsym $Mod+7 workspace "7:KVM-Linux"
+bindsym $Mod+6 workspace 6
+bindsym $Mod+7 workspace 7
 bindsym $Mod+8 workspace 8
 bindsym $Mod+9 workspace 9 
 bindsym $Mod+0 workspace "10:Other"
@@ -128,8 +129,8 @@ bindsym $Mod+Shift+2 move container to workspace "2:Chrome"
 bindsym $Mod+Shift+3 move container to workspace "3:Vscode" 
 bindsym $Mod+Shift+4 move container to workspace "4:Vlc" 
 bindsym $Mod+Shift+5 move container to workspace "5:Spotify" 
-bindsym $Mod+Shift+6 move container to workspace "6:KVM-Windows"
-bindsym $Mod+Shift+7 move container to workspace "7:KVM-Linux"
+bindsym $Mod+Shift+6 move container to workspace 6
+bindsym $Mod+Shift+7 move container to workspace 7
 bindsym $Mod+Shift+8 move container to workspace 8
 bindsym $Mod+Shift+9 move container to workspace 9
 bindsym $Mod+Shift+0 move container to workspace "10:Other"
@@ -151,7 +152,12 @@ for_window [title="$term"] floating enable
 #
 #  设置程序启动器
 bindsym $Mod+d exec --no-startup-id $menu
-#
+
+
+#bindsym $Mod+q bar mode toggle
+
+
+
 #  设置关闭窗口命令
 bindsym $Mod+Shift+q kill
 #
