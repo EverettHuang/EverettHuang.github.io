@@ -21,7 +21,7 @@ set $down j
 set $up k
 set $right l
 #  首选终端模拟器
-set $term terminator
+set $term tilix
 #  首选应用启动器
 set $menu dmenu_run
 #
@@ -148,7 +148,7 @@ bindsym $Mod+Shift+0 move container to workspace "10:Other"
 #  启动终端
 bindsym $Mod+Return exec $term
 #  设置终端以浮动方式打开
-for_window [title="$term"] floating enable
+#for_window [title="$term"] floating enable
 #
 #  设置程序启动器
 bindsym $Mod+d exec --no-startup-id $menu
