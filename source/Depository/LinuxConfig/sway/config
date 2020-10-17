@@ -2,7 +2,6 @@
 #  author    :    Everett  <freeeverettmail@gmail.com>
 #
 #  Everett Github  (https://everetthuang.github.io)
-#  swaywm README  (https://everetthuang.github.io/Depository/Config/sway/README.md)
 #  swaywm  配置地址  (https://everetthuang.github.io/Depository/Config/sway/config)
 #  i3status配置地址  (https://everetthuang.github.io/Depository/Config/sway/i3status.conf)
 #
@@ -24,6 +23,13 @@ set $right l
 set $term tilix
 #  首选应用启动器
 set $menu dmenu_run
+#  background
+set $backgroundpath /home/everett/Pictures/001.jpg
+# set Xwayland
+# xwayland disable
+
+
+
 #
 #  ==================================================
 #  ==================================================
@@ -37,13 +43,13 @@ set $menu dmenu_run
 #
 #  设置自动锁屏及息屏时间
 exec swayidle -w \
-         timeout 3000000 'swaylock -f -i /home/everett/Pictures/029.jpg' \
+         timeout 3000000 'swaylock -f -i $backgroundpath' \
          timeout 6000000 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -i /home/everett/Pictures/029.jpg' \
+         before-sleep 'swaylock -f -i $backgroundpath' \
 #
 #  设置壁纸
-output "*" bg /home/everett/Pictures/001.jpg fill
+output "*" bg $backgroundpath fill
 #
 #  笔记本快捷键亮度音量调节
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -60,6 +66,7 @@ bar {
     mode hide
     position top
     font pango: 9
+    separator_symbol "|"
     status_command i3status -c ~/.config/sway/i3status.conf
     colors {
         background #FFFFE0
@@ -94,7 +101,11 @@ for_window [window_role="pop-up"] floating enable       # 让弹窗以浮动窗�
 for_window [window_role="task_dialog"] floating enable
 #
 #  设置显示器
+#  xianshiqibujuxiangshuzhoudisixiangxianyiyang
+#  chakanxianshiqixiangxixinxi
+#  swaymsg -t get_outputs
 #  笔记本自带显示器
+#  res zhidingxianshiqifenbianlv
 #output eDP-1 pos 0,0 res 1920x1080
 #  外置显示器
 #output DP-1 pos 1920,0 res 1920x1080
@@ -173,7 +184,9 @@ bindsym $Mod+c exec code
 bindsym $Mod+v exec vlc
 bindsym $Mod+s exec spotify
 #  设置程序在指定工作区打开
+# swaymsg -t get_tree    app_id
 # 可用xprop | grep WM_CLASS命令查看程序CLASS值
+# for_window [app_id="XXXXX"] floating enable
 assign [class="Google-chrome"] "2:Chrome"
 assign [class="Code"] "3:Vscode"
 assign [class="vlc"] "4:Vlc"
